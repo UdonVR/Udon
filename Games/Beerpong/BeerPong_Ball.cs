@@ -1,7 +1,7 @@
 /*
 //Script by Child of the beast
 //V 1.0
-//https://github.com/ChildoftheBeast/Udon
+//https://github.com/ChildoftheBeast/VRC-UdonSharp-Scripts
 */
 using UdonSharp;
 using UnityEngine;
@@ -17,7 +17,6 @@ public class BeerPong : UdonSharpBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("WOOW");
         if (other.transform.parent == ParentOfCups.transform) other.gameObject.SetActive(false);
     }
 
@@ -31,6 +30,7 @@ public class BeerPong : UdonSharpBehaviour
 
     public void RespawnBall()
     {
+        Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Ball.transform.position = Ball_Spawn;
     }
     public void RespawnCups()
