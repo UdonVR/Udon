@@ -1,7 +1,7 @@
 #####
 ## Script by Child of the beast
 ## V 1.0
-## https://github.com/ChildoftheBeast/VRCUdon-
+## https://github.com/ChildoftheBeast/VRC-UdonSharp-Scripts
 #####
 
 using UdonSharp;
