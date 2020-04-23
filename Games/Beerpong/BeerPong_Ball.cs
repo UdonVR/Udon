@@ -10,13 +10,35 @@ using VRC.SDKBase;
 using VRC.Udon;
 using System.Collections;
 
-public class BeerPong_Ball : UdonSharpBehaviour
+public class BeerPong : UdonSharpBehaviour
 {
     public GameObject ParentOfCups;
     public GameObject Ball;
 
-    private void onCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform.parent == ParentOfCups) other.gameObject.SetActive(false);
+        Debug.Log("WOOW");
+        if (other.transform.parent == ParentOfCups) other.gameObject.SetActive(false);
+    }
+
+    public GameObject BallSpawn;
+    private Vector3 Ball_Spawn;
+
+    private void Start()
+    {
+        Ball_Spawn = BallSpawn.transform.position;
+    }
+
+    public void RespawnBall()
+    {
+        Ball.transform.position = Ball_Spawn;
+    }
+    public void RespawnCups()
+    {
+        int cups = ParentOfCups.transform.childCount;
+        for (int v = 0; v < cups; v++)
+        {
+            ParentOfCups.transform.GetChild(v).gameObject.SetActive(true);
+        }
     }
 }
