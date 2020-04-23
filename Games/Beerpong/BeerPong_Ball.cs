@@ -18,7 +18,7 @@ public class BeerPong : UdonSharpBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("WOOW");
-        if (other.transform.parent == ParentOfCups) other.gameObject.SetActive(false);
+        if (other.transform.parent == ParentOfCups.transform) other.gameObject.SetActive(false);
     }
 
     public GameObject BallSpawn;
