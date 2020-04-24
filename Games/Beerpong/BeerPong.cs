@@ -1,5 +1,5 @@
 /*
-//Script by Child of the beast
+//Script by Child of the beast and Takato65
 //V 1.0
 //https://github.com/ChildoftheBeast/VRC-UdonSharp-Scripts
 */
