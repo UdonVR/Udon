@@ -1,7 +1,8 @@
-VRC Udon Sharp scripts
+# Beer Pong
 
 Requierments:
-UdonSharp - https://github.com/Merlin-san/UdonSharp
+* UdonSharp - https://github.com/Merlin-san/UdonSharp
+* VRCSDK3 - https://vrchat.com/home/download
 
 Quick guide:
 - make sure the script is on the ball
