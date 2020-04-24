@@ -17,7 +17,10 @@ public class BeerPong : UdonSharpBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent == ParentOfCups.transform) other.gameObject.SetActive(false);
+        if (other.transform.parent == ParentOfCups.transform) 
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     public GameObject BallSpawn;
@@ -30,8 +33,13 @@ public class BeerPong : UdonSharpBehaviour
 
     public void RespawnBall()
     {
+        Networking.SetOwner(Networking.LocalPlayer, Ball);
         Ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
         Ball.transform.position = Ball_Spawn;
+    }
+    public void Network_RespawnCups()
+    {
+        SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "RespawnCups");
     }
     public void RespawnCups()
     {
