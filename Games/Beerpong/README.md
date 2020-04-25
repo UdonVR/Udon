@@ -15,7 +15,7 @@ Make your own beer pong with this script. Unlimited amounts of cups supported in
 - use "UdonBehaviour.SendCustomEvent" set with "RespawnBall" to make the ball respawn
 
 ### Prefab:
-- The prefab is pre-setup with a table with 2 sets of cups.
+- The prefab is pre-setup with a table and 2 sets of cups.
 
 
 Dont want to use Udon#? Use the Assembly file
