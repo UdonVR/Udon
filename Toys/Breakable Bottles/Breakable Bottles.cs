@@ -1,7 +1,9 @@
 /*
 //Script by Child of the beast
-//V 1.0
 //https://github.com/ChildoftheBeast/Udon
+//
+//This still has bugs in it being worked out, be warned
+//
 */
 
 using UdonSharp;
