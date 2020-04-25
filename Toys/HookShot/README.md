@@ -1,5 +1,5 @@
 # HookShot
- - Adjustable rang, default 100m
- - Layer mask selecter, default everything
- - Pull Speed Limit varible
- - Pull Strgnth varible
+ - Adjustable range, default 100m
+ - Layer mask selector, default everything
+ - Pull Speed Limit variable
+ - Pull Strength variable
