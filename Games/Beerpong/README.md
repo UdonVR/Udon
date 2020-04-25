@@ -1,6 +1,6 @@
 # Beer Pong
 
-Make your own beer pong with this script. Unlimited amounts of cups supported in whatever order you want them in.
+Make your own beer pong with this script. Unlimited amounts of cups are supported in whatever order you want them in.
 
 ![](https://github.com/ChildoftheBeast/Udon/blob/master/Games/Beerpong/beer%20pong.png)
 
