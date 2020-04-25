@@ -4,7 +4,7 @@ Make your own beer pong with this script. Unlimited amounts of cups supported in
 
 ![](https://github.com/ChildoftheBeast/Udon/blob/master/Games/Beerpong/beer%20pong.png)
 
-### Requierments:
+### Requirements:
 - UdonSharp - https://github.com/Merlin-san/UdonSharp
 - VRCSDK3 - https://vrchat.com/home/download
 
