@@ -1,7 +1,7 @@
 # Compilation of VRC UdonSharp scripts
 
-### Grab UdonSharp here:
-[UdonSharp Releases](https://github.com/Merlin-san/UdonSharp/releases)
+### [Grab UdonSharp here](https://github.com/Merlin-san/UdonSharp/releases)
+https://github.com/Merlin-san/UdonSharp/releases
 
 ### [Toggle](https://github.com/ChildoftheBeast/Udon/tree/master/Basics/)
 - Basic functionality scripts
