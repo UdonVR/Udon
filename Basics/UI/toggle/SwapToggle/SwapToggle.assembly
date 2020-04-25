@@ -1,0 +1,73 @@
+.data_start
+
+    .export thistoggle
+    .export Default_On
+    .export Default_Off
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    Default_Off: %UnityEngineGameObject, null
+    Default_On: %UnityEngineGameObject, null
+    thistoggle: %UnityEngineUIToggle, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __0_intnl_SystemBoolean: %SystemBoolean, null
+    __1_intnl_SystemBoolean: %SystemBoolean, null
+    __2_intnl_SystemBoolean: %SystemBoolean, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+
+.data_end
+
+        
+         # using UdonSharp;
+        
+         # using UnityEngine;
+        
+         # using UnityEngine.UI;
+        
+         # using VRC.SDKBase;
+        
+         # using VRC.Udon;
+        
+         # using System.Collections;
+        
+         # public class UIToggle : UdonSharpBehaviour
+.code_start
+        
+         # public Toggle thistoggle;
+        
+         # public GameObject Default_On;
+        
+         # public GameObject Default_Off;
+        
+         # public override void Interact()
+    .export _interact
+        
+    _interact:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        PUSH, __0_intnl_returnTarget_UInt32
+        COPY
+        
+         # {
+        
+         # Default_Off.SetActive(thistoggle.isOn);
+        PUSH, thistoggle
+        PUSH, __0_intnl_SystemBoolean
+        EXTERN, "UnityEngineUIToggle.__get_isOn__SystemBoolean"
+        PUSH, Default_Off
+        PUSH, __0_intnl_SystemBoolean
+        EXTERN, "UnityEngineGameObject.__SetActive__SystemBoolean__SystemVoid"
+        
+         # Default_On.SetActive(!thistoggle.isOn);
+        PUSH, thistoggle
+        PUSH, __1_intnl_SystemBoolean
+        EXTERN, "UnityEngineUIToggle.__get_isOn__SystemBoolean"
+        PUSH, __1_intnl_SystemBoolean
+        PUSH, __2_intnl_SystemBoolean
+        EXTERN, "SystemBoolean.__op_UnaryNegation__SystemBoolean__SystemBoolean"
+        PUSH, Default_On
+        PUSH, __2_intnl_SystemBoolean
+        EXTERN, "UnityEngineGameObject.__SetActive__SystemBoolean__SystemVoid"
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end
