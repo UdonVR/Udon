@@ -24,10 +24,8 @@ namespace Childofthebeast.Basics
         {
             if (Master)
             {
-                Debug.Log("Master = True");
                 if (Networking.IsMaster)
                 {
-                    Debug.Log("Is Master");
                     Use();
                     return;
                 }
@@ -36,13 +34,11 @@ namespace Childofthebeast.Basics
 
             if (Enable_AllowedPlayers)
             {
-                Debug.Log("Enable_AllowedPlayers = True");
-                string Cur_Player = Networking.LocalPlayer.displayName;
+                string Cur_Player = Networking.LocalPlayer.displayName.ToLower();
                 foreach (string Player in AllowedPlayers)
                 {
-                    if (Player == Cur_Player)
+                    if (Player.ToLower() == Cur_Player)
                     {
-                        Debug.Log("PlayerCheck Passed");
                         Use();
                         return;
                     }
@@ -56,22 +52,18 @@ namespace Childofthebeast.Basics
         {
             if (LocalOnly)
             {
-                Debug.Log("Local");
-                Trigger();
+                Trogger();
             }
             else
             {
-                Debug.Log("Network");
-                SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "Trigger");
+                SendCustomNetworkEvent(VRC.Udon.Common.Interfaces.NetworkEventTarget.All, "Trogger");
             }
         }
 
-        private void Trigger()
+        public void Trogger()
         {
-            Debug.Log("Trigger");
             if (Owner)
             {
-                Debug.Log("Owner");
                 foreach (GameObject Item in Objects)
                 {
                     if (Networking.IsOwner(Networking.LocalPlayer, Item)) Item.SetActive(!Item.activeSelf);
@@ -79,7 +71,6 @@ namespace Childofthebeast.Basics
 
             } else
             {
-                Debug.Log("NotOwner");
                 foreach (GameObject Item in Objects)
                 {
                     Item.SetActive(!Item.activeSelf);
