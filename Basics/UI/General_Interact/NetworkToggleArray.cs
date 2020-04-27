@@ -1,6 +1,10 @@
 /*
 //Script by Child of the beast
 //https://github.com/ChildoftheBeast/Udon
+//
+//If you use a script from this github:
+//please link back to this github in your world so it can potentially help others.
+//Thank you.
 */
 using UdonSharp;
 using UnityEngine;
