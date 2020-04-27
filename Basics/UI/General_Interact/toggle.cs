@@ -24,8 +24,10 @@ namespace Childofthebeast.Basics
         {
             if (Master)
             {
+                Debug.Log("Master = True");
                 if (Networking.IsMaster)
                 {
+                    Debug.Log("Is Master");
                     Use();
                     return;
                 }
@@ -34,11 +36,13 @@ namespace Childofthebeast.Basics
 
             if (Enable_AllowedPlayers)
             {
-                string Cur_Player = Networking.LocalPlayer.displayName.ToLower();
+                Debug.Log("Enable_AllowedPlayers = True");
+                string Cur_Player = Networking.LocalPlayer.displayName;
                 foreach (string Player in AllowedPlayers)
                 {
-                    if (Player.ToLower() == Cur_Player)
+                    if (Player == Cur_Player)
                     {
+                        Debug.Log("PlayerCheck Passed");
                         Use();
                         return;
                     }
