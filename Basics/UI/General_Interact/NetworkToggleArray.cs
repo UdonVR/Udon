@@ -1,6 +1,6 @@
 /*
-  SCRIPT NOT FINISHED
-  by Child of the Beast
+//Script by Child of the beast
+//https://github.com/ChildoftheBeast/Udon
 */
 using UdonSharp;
 using UnityEngine;
