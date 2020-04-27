@@ -1,4 +1,6 @@
 # Compilation of VRC UdonSharp scripts
+If you use a script from this github, i ask that you put a link back to this github in your world so it can potentially help others.
+Thank you.
 
 ### [Grab UdonSharp here](https://github.com/Merlin-san/UdonSharp/releases)
 - https://github.com/Merlin-san/UdonSharp/releases
