@@ -13,4 +13,7 @@ This repository is not associated with VRChat Inc in any way.
 - Turn stuff on, turn stuff off etc
 - organized by Button Type
 ### [Games](/Games)
-- Fun stuff
+- Fun, typically multi-person focused prefabs and scripts
+
+### [Toys](/Toys)
+- Fun prefabs and scripts
