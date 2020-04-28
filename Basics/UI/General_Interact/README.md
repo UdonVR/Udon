@@ -2,7 +2,7 @@ If you use a script from this github:
 please link back to this github in your world so it can potentially help others.
 Thank you.
 
-## [NetworkToggleArray](https://github.com/ChildoftheBeast/Udon/blob/master/Basics/UI/General_Interact/NetworkToggleArray.cs)
+## [NetworkToggleArray](/Basics/UI/General_Interact/NetworkToggleArray.cs)
 - General use toggle that uses Interact()
 - Choose between Local or Network
 - Master check
