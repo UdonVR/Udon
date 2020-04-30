@@ -16,6 +16,3 @@ Make your own beer pong with this script. Unlimited amounts of cups are supporte
 
 ### Prefab:
 - The prefab is pre-setup with a table and 2 sets of cups.
-
-
-Dont want to use Udon#? Use the Assembly file
