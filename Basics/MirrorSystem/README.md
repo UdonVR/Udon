@@ -1,4 +1,7 @@
 # MirrorSystem
+
+![](/Basics/MirrorSystem/MirrorSystem.gif)
+
 ## ***THIS SCRIPT HAS TO BE A COMPONENT IN AN INPUT FEILD***
 
 
