@@ -32,6 +32,8 @@ public class Hookshot : UdonSharpBehaviour
     {
         rb =transform.GetComponent<Rigidbody>();
         pickup = (VRC.SDK3.Components.VRCPickup)transform.GetComponent(typeof(VRC.SDK3.Components.VRCPickup));
+        hook.parent = transform.parent;
+        hook.name = "Hook_" + hook.GetSiblingIndex();
     }
 
     public override void OnPickup()
@@ -92,6 +94,7 @@ public class Hookshot : UdonSharpBehaviour
             {
                 pointer.position = holdPointer.position;
             }
+
             if (used)
             {
                 if (hooked || temp)
@@ -109,21 +112,24 @@ public class Hookshot : UdonSharpBehaviour
                     {
                         direction.LookAt(hook);
                         Vector3 playerVelocity = api.GetVelocity();
+                        Vector3 vel = direction.forward * pullingPower * Time.fixedDeltaTime;
+                        playerVelocity = playerVelocity + vel;
                         playerVelocity.x = Mathf.Clamp(playerVelocity.x, -speedLimit, speedLimit);
                         playerVelocity.y = Mathf.Clamp(playerVelocity.y, -speedLimit, speedLimit);
                         playerVelocity.z = Mathf.Clamp(playerVelocity.z, -speedLimit, speedLimit);
                         //playerVelocity = Vector3.Min(playerVelocity, vectorMin);
                         //speed = baseSpeed + Vector3.Magnitude(rb.velocity);
-                        Vector3 vel = direction.forward * pullingPower * Time.fixedDeltaTime;
-                        api.SetVelocity((playerVelocity + vel));
+                        
+                        api.SetVelocity(playerVelocity);
                     }
                 }
             }
             else
             {
-                hook.position = rayPoint.position;
+                
                 if (temp)
                 {
+                    hook.position = rayPoint.position;
                     lineRenderer.SetPosition(1, Vector3.zero);
                     temp = false;
                 }
