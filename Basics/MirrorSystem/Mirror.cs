@@ -8,7 +8,7 @@ namespace Childofthebeast.Basics.Mirror
     {
         public GameObject[] Mirrors;
         private InputField MirrorValue;
-        private bool Debuger = true;
+        private bool Debuger = false;
 
         private void Start()
         {
