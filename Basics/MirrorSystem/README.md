@@ -4,6 +4,7 @@
 
 ## ***THIS SCRIPT HAS TO BE A COMPONENT IN AN INPUT FEILD***
 
+*The prefab has the debigger removed for it to cut down on un-needed checks. If you want the debugger use the script on this github.*
 
 ### Setting the script up from scratch
 
