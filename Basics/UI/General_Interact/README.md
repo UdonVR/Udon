@@ -3,6 +3,8 @@ please link back to this github in your world so it can potentially help others.
 Thank you.
 
 ## [NetworkToggleArray](/Basics/UI/General_Interact/NetworkToggleArray.cs)
+Pre made script to turn any number of objects on and off.
+
 - General use toggle that uses Interact()
 - Choose between Local or Network
 - Master check
