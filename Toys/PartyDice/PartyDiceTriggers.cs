@@ -110,6 +110,7 @@ namespace Childofthebeast.Toys
                 default:
                     break;
             }
+            ClearBoi();
         }
         public Slider ASlide;
         public InputField ASlideText;
@@ -117,6 +118,13 @@ namespace Childofthebeast.Toys
         {
             ASlideText.text = ASlide.value.ToString();
             SoundBoi.volume = ASlide.value / 100;
+        }
+
+        public void ClearBoi()
+        {
+            Debug.Log(OutputUwU.text);
+            OutputUwU.text = "0";
+            Debug.Log(OutputUwU.text);
         }
     }
 }
