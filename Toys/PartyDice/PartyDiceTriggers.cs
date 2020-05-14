@@ -122,9 +122,7 @@ namespace Childofthebeast.Toys
 
         public void ClearBoi()
         {
-            Debug.Log(OutputUwU.text);
             OutputUwU.text = "0";
-            Debug.Log(OutputUwU.text);
         }
     }
 }
