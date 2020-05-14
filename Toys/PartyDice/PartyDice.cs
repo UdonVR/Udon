@@ -10,6 +10,7 @@ namespace Childofthebeast.Toys
 {
     public class PartyDice : UdonSharpBehaviour
     {
+        public bool DebugThisBoi = false;
         private float DiceBoiSpeed;
         private int DiceBoiIs = 0;
 
@@ -31,6 +32,7 @@ namespace Childofthebeast.Toys
         }
         private void Update()
         {
+            if (DebugThisBoi == true) DebugMe();
             if (Networking.LocalPlayer.IsOwner(DiceBoi) && Go == true)
             {
                 DiceBoiSpeed = Mathf.Round((DiceBoiuwu.velocity.magnitude) * 100);
@@ -40,10 +42,6 @@ namespace Childofthebeast.Toys
                     Go = false;
                 }
             }
-        }
-        public override void OnPickup()
-        {
-            Go = true;
         }
         public void PDiceNetworkEvent()
         {
@@ -63,11 +61,21 @@ namespace Childofthebeast.Toys
             }
             return (DiceBoiIs);
         }
+        public void Dropped()
+        {
+           Go = true;
+        }
 
         public void RespawnDiceboi()
         {
             Networking.SetOwner(Networking.LocalPlayer, DiceBoi);
             DiceBoi.transform.position = DiceBoiSpawn;
+        }
+
+        public Text GoVal;
+        public void DebugMe()
+        {
+            GoVal.text = Go.ToString();
         }
 
     }
