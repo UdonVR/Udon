@@ -1,3 +1,4 @@
+
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -60,7 +61,7 @@ public class NHIE : UdonSharpBehaviour
         Classicobj = transform.Find("Classic").gameObject;
         SelectMenu = transform.Find("Selecting_Canvas").gameObject;
         GameMenu = transform.Find("Playing_Canvas").gameObject;
-        QuestionBoard = GameMenu.transform.Find("QuestionText").GetComponent<Text>();
+        QuestionBoard = GameMenu.transform.GetChild(0).Find("QuestionText").GetComponent<Text>();
         QuestionCountSFW = QuestionsSFW.Length;
         QuestionCountNSFW = QuestionsNSFW.Length;
         SelectMenu.transform.GetChild(0).Find("SFW_Button").Find("Count").GetComponent<Text>().text = QuestionCountSFW.ToString() + " Questions";
