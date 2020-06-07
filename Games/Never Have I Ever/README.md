@@ -8,3 +8,6 @@ Requested on the Discord by Dilbert124
 
 ## Planned Features
 - Check for redundent question pulls
+
+# Changelog
+- 1.0 Release
