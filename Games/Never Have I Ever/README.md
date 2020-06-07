@@ -2,7 +2,7 @@
 Requested on the Discord by Dilbert124
 
 ## Features
-- Pick able game type (only changeable by the room master)
+- Pickable game type (only changeable by the room master)
   - Classic: 10 lines. your normal NHIE
   - Round: 10 lines coming out of a pedestal in the middle. Better for games with hosts so everyone can hear them at all times.
 - 100 pre-loaded questions, 50 SFW and 50 NSFW
