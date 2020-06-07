@@ -13,4 +13,6 @@ Requested on the Discord by Dilbert124
 - Check for redundant question pulls
 
 ## Changelog
+- 1.1 Bugfix
+  - Fixed naming issue
 - 1.0 Release
