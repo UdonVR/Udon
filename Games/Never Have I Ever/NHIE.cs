@@ -1,3 +1,8 @@
+/*
+ * Never Have I Ever
+ * Made by Child of the Beast
+ * Version 1.3
+ */
 using UdonSharp;
 using UnityEngine;
 using VRC.SDKBase;
@@ -60,12 +65,12 @@ public class NHIE : UdonSharpBehaviour
         Classicobj = transform.Find("Classic").gameObject;
         SelectMenu = transform.Find("Selecting_Canvas").gameObject;
         GameMenu = transform.Find("Playing_Canvas").gameObject;
-        QuestionBoard = GameMenu.transform.GetChild(0).Find("QuestionText").GetComponent<Text>();
+        QuestionBoard = GameMenu.transform.Find("Panel/QuestionText").GetComponent<Text>();
         QuestionCountSFW = QuestionsSFW.Length;
         QuestionCountNSFW = QuestionsNSFW.Length;
-        SelectMenu.transform.GetChild(0).Find("SFW_Button").Find("Count").GetComponent<Text>().text = QuestionCountSFW.ToString() + " Questions";
-        SelectMenu.transform.GetChild(0).Find("NSFW_Button").Find("Count").GetComponent<Text>().text = QuestionCountNSFW.ToString() + " Questions";
-        SelectMenu.transform.GetChild(0).Find("Both_Button").Find("Count").GetComponent<Text>().text = (QuestionCountSFW + QuestionCountNSFW).ToString() + " Questions";
+        SelectMenu.transform.Find("Panel/SFW_Button/Count").GetComponent<Text>().text = QuestionCountSFW.ToString() + " Questions";
+        SelectMenu.transform.Find("Panel/NSFW_Button/Count").GetComponent<Text>().text = QuestionCountNSFW.ToString() + " Questions";
+        SelectMenu.transform.Find("Panel/Both_Button/Count").GetComponent<Text>().text = (QuestionCountSFW + QuestionCountNSFW).ToString() + " Questions";
     }
     private void Update()
     {
@@ -78,25 +83,37 @@ public class NHIE : UdonSharpBehaviour
             QuestionBoard.text = QuestionsNSFW[Current];
         }
     }
-
+    /*
+     * Setup
+     */
     public void SetupSWF()
     {
-        //Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        GameType = "SFW";
+        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupSWF");
         NewQuestion();
     }
     public void SetupNSWF()
     {
-        //Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        GameType = "NSFW";
+        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupNSWF");
         NewQuestion();
     }
     public void SetupBoth()
     {
-        //Networking.SetOwner(Networking.LocalPlayer, gameObject);
-        GameType = "BOTH";
+        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupBoth");
         NewQuestion();
     }
+    public void NetworkSetupSWF()
+    {
+        GameType = "SFW";
+    }
+    public void NetworkSetupNSWF()
+    {
+        GameType = "NSFW";
+    }
+    public void NetworkSetupBoth()
+    {
+        GameType = "BOTH";
+    }
+
     public void Setup()
     {
         SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkSetup");
@@ -115,10 +132,11 @@ public class NHIE : UdonSharpBehaviour
         SelectMenu.SetActive(true);
         GameMenu.SetActive(false);
     }
-
+    /*
+    * Setup
+    */
     public void NewQuestion()
     {
-        //Networking.SetOwner(Networking.LocalPlayer, gameObject);
         SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkSetup");
         SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkNewQuestion");
     }
