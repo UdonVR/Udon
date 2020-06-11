@@ -19,16 +19,16 @@ namespace Childofthebeast.Basics
     public class NetworkToggleArray : UdonSharpBehaviour
     {
         public bool LocalOnly = false;
-        public bool Master = false;
-        public bool Owner = false;
-        public bool Enable_AllowedPlayers;
+        public bool Master = false; //Master Toggle
+        public bool Owner = false; //Owner Toggle
+        public bool Enable_AllowedPlayers; //player list
         public string[] AllowedPlayers; 
         public GameObject[] Objects;
         public override void Interact()
         {
-            if (Master)
+            if (Master) //checking if Master is enabled
             {
-                if (Networking.IsMaster)
+                if (Networking.IsMaster) //Checking to see if the player who used the button is the master
                 {
                     Use();
                     return;
@@ -36,7 +36,7 @@ namespace Childofthebeast.Basics
                 
             }
 
-            if (Enable_AllowedPlayers)
+            if (Enable_AllowedPlayers) // checking to see if the player list is enabled
             {
                 string Cur_Player = Networking.LocalPlayer.displayName.ToLower();
                 foreach (string Player in AllowedPlayers)
