@@ -1,6 +1,8 @@
 # Never have i Ever
 Requested on the Discord by Dilbert124
 
+![image](/Games/Never%20Have%20I%20Ever/Game%20Mode.PNG)
+
 ## Features
 - Pickable game type (only changeable by the room master)
   - Classic: 10 lines. your normal NHIE
