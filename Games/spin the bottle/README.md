@@ -7,8 +7,8 @@ spin the bottle is currently being bug tested, polished up and finalized. it wil
 - 48 different stop points on the table
 
 ### Premium:
+###### Available on our Patreon
 - different game modes
   - Spin the bottle
   - drinking game mode
   - Russian Roulette mode
-Available on our Patreon
