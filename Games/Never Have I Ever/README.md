@@ -1,3 +1,4 @@
+[Join our Discord](http://discord.gg/dpuxmxr)
 # Never have i Ever
 Requested on the Discord by Dilbert124
 
