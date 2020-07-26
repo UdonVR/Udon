@@ -1,3 +1,4 @@
+[Join our Discord](http://discord.gg/dpuxmxr)
 # Beer Pong
 
 Make your own beer pong with this script. Unlimited amounts of cups are supported in whatever order you want them in.
