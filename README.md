@@ -5,9 +5,16 @@ Thank you.
 
 This repository is not associated with VRChat Inc in any way.
 
+---------------------
+
 [Go have a look at the world.](https://vrchat.com/home/world/wrld_805f0a6e-58c0-44e1-85a6-57adf8206c9b)
 
-[Join our Discord](http://discord.gg/dpuxmxr)
+<p align="center">
+  <a href="http://discord.gg/dpuxmxr"><img src="/.github/Icon/Discord Button.png" height="30"></a>
+  <a href="https://ko-fi.com/takatoandbeast"><img src="https://www.ko-fi.com/img/githubbutton_sm.svg" height="30"></a>
+</p>
+
+---------------------
 
 ### [Grab UdonSharp here](https://github.com/Merlin-san/UdonSharp/releases)
 - https://github.com/Merlin-san/UdonSharp/releases
