@@ -10,6 +10,7 @@ This repository is not associated with VRChat Inc in any way.
 [Go have a look at the world.](https://vrchat.com/home/world/wrld_805f0a6e-58c0-44e1-85a6-57adf8206c9b)
 
 <p align="center">
+  <a href="https://www.patreon.com/TakatoandBeast"><img src="/.github/Icon/Patreon Button.png" height="30"></a>
   <a href="http://discord.gg/dpuxmxr"><img src="/.github/Icon/Discord Button.png" height="30"></a>
   <a href="https://ko-fi.com/takatoandbeast"><img src="https://www.ko-fi.com/img/githubbutton_sm.svg" height="30"></a>
 </p>
