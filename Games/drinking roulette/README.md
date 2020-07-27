@@ -1,5 +1,4 @@
-[Join our Discord](http://discord.gg/dpuxmxr)
-# Spin the bottle
+# drinking roulette
 spin the bottle is currently being bug tested, polished up and finalized. it will be released some time this week.
 
 ## Features
@@ -11,8 +10,8 @@ spin the bottle is currently being bug tested, polished up and finalized. it wil
 ###### Available on our Patreon
 - different game modes
   - Spin the bottle
-  - drinking game mode
-  - Russian Roulette mode
+  - drinking roulette
+  - Russian Roulette
 
 ---------------------
 
