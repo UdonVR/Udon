@@ -7,8 +7,6 @@ This repository is not associated with VRChat Inc in any way.
 
 ---------------------
 
-[Go have a look at the world.](https://vrchat.com/home/world/wrld_805f0a6e-58c0-44e1-85a6-57adf8206c9b)
-
 <p align="center">
   <a href="https://www.patreon.com/TakatoandBeast" target="_blank">
     <img src="/.github/Icon/Patreon Button.png" height="30"></a>
@@ -19,6 +17,8 @@ This repository is not associated with VRChat Inc in any way.
 </p>
 
 ---------------------
+
+[Go have a look at our Showcase world.](https://vrchat.com/home/world/wrld_805f0a6e-58c0-44e1-85a6-57adf8206c9b)
 
 ### [Grab UdonSharp here](https://github.com/Merlin-san/UdonSharp/releases)
 - https://github.com/Merlin-san/UdonSharp/releases
