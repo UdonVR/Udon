@@ -17,3 +17,16 @@ Make your own beer pong with this script. Unlimited amounts of cups are supporte
 
 ### Prefab:
 - The prefab is pre-setup with a table and 2 sets of cups.
+
+---------------------
+
+<p align="center">
+  <a href="https://www.patreon.com/TakatoandBeast" target="_blank">
+    <img src="/.github/Icon/Patreon Button.png" height="30"></a>
+  <a href="http://discord.gg/dpuxmxr" target="_blank">
+    <img src="/.github/Icon/Discord Button.png" height="30"></a>
+  <a href="https://ko-fi.com/takatoandbeast" target="_blank">
+    <img src="https://www.ko-fi.com/img/githubbutton_sm.svg" height="30"></a>
+</p>
+
+---------------------
