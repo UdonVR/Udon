@@ -9,9 +9,9 @@ spin the bottle is currently being bug tested, polished up and finalized. it wil
 ### Premium:
 ###### Available through our <a href="https://www.patreon.com/TakatoandBeast" target="_blank">Patreon</a> or from our <a href="https://ko-fi.com/takatoandbeast/shop" target="_blank">Ko-Fi store</a>
 - different game modes
-  - Spin the bottle
-  - drinking roulette
-  - Russian Roulette
+  - Spin the bottle (finished)
+  - drinking roulette (finished)
+  - Russian Roulette (in development)
 
 ---------------------
 
