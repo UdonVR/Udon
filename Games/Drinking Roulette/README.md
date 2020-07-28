@@ -1,4 +1,4 @@
-# drinking roulette
+# Drinking Roulette
 
 ![](https://raw.githubusercontent.com/VrcUdon/Udon/master/Games/Drinking%20Roulette/github%20assets/TableTop.PNG)
 
