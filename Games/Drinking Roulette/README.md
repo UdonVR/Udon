@@ -2,6 +2,15 @@
 
 ![](https://raw.githubusercontent.com/VrcUdon/Udon/master/Games/Drinking%20Roulette/github%20assets/TableTop.PNG)
 
+## Quick guide
+The prefab should work out right of the box
+
+if you want to resize the table
+- right click the prefab in your hierarchy
+- Unpack the prefab
+- Move the Canvas out of the prefab
+- resize the prefab
+
 ## Features
 ### Free:
 - fully customizable Table Top
