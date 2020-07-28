@@ -4,7 +4,7 @@
 
 ## Features
 ### Free:
-- fully customizable top on the table
+- fully customizable Table Top
   - Texture template included
   - Made with UI text
   - different sized panels included
