@@ -1,5 +1,6 @@
 # drinking roulette
-spin the bottle is currently being bug tested, polished up and finalized. it will be released some time this week.
+
+![](https://raw.githubusercontent.com/VrcUdon/Udon/master/Games/Drinking%20Roulette/github%20assets/TableTop.PNG)
 
 ## Features
 ### Free:
@@ -9,7 +10,7 @@ spin the bottle is currently being bug tested, polished up and finalized. it wil
   - different sized panels included
 - 48 different stop points for the spinner
 
-### Premium:
+### Premium: Coming Soon!
 ###### Available through our <a href="https://www.patreon.com/TakatoandBeast" target="_blank">Patreon</a> or from our <a href="https://ko-fi.com/takatoandbeast/shop" target="_blank">Ko-Fi store</a>
 - different game modes
   - Spin the bottle (finished)
