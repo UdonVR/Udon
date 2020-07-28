@@ -24,9 +24,7 @@ This repository is not associated with VRChat Inc in any way.
 - https://github.com/Merlin-san/UdonSharp/releases
 
 ### [Basics](/Basics/)
-- Basic functionality scripts
-- Turn stuff on, turn stuff off etc
-- organized by Button Type
+- functional stuff
 ### [Games](/Games)
 - Fun, typically multi-person focused prefabs and scripts
 
