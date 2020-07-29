@@ -1,5 +1,7 @@
 # MirrorSystem
 
+This is a Mirror System that once setup, controls all the mirrors in your world so only 1 can be active at a time.
+
 ![](/Basics/MirrorSystem/MirrorSystem.gif)
 
 ## ***THIS SCRIPT HAS TO BE A COMPONENT IN AN INPUT FEILD***
