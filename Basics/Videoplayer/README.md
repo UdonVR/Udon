@@ -11,3 +11,21 @@
 </p>
 
 ---------------------
+
+A fully featured Udon Video Player
+
+The latest VRChat SDK and UdonSharp versions are required.
+[UdonSharp] https://github.com/MerlinVR/UdonSharp/releases/tag/v0.18.1
+[VRC SDK] https://vrchat.com/home/download
+
+Current known issues:
+- None
+
+Current Features:
+- Emission buttons (Off, Low, Med, High)
+- Looping
+- Time bar scrubbing (Local only display)
+- Realtime GI
+- Auto play
+- Late joiner syncing
+- Master Only Toggle
