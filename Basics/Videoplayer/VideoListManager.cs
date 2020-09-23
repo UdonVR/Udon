@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDKBase;
 using VRC.Udon;
+
 namespace UdonVR.Takato
 {
 
@@ -14,17 +15,16 @@ namespace UdonVR.Takato
         public VRCUrl[] videoUrls;
         public UdonSyncVideoPlayer videoPlayer;
 
-        private Slider _slider;
-
-        private void Start()
-        {
-            _slider = GetComponent<Slider>();
-        }
+        public Slider _slider;
 
         public void SendVideoUrl()
         {
-            int index = (int)_slider.value;
-            videoPlayer.ChangeVideoUrlVRC(videoUrls[index]);
+            if (_slider.value != -1)
+            {
+                int index = (int)_slider.value;
+                videoPlayer.ChangeVideoUrlVRC(videoUrls[index]);
+                _slider.value = -1;
+            }
         }
     } 
 }

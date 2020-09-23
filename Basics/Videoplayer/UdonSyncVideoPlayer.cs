@@ -27,6 +27,7 @@ namespace UdonVR.Takato
         private float _delayTime;
         [UdonSynced] private float _videoStartNetworkTime = 0;
         [UdonSynced] private VRCUrl _syncedURL;
+        private VRCUrl _loadedVideoURL;
         [UdonSynced] private int _videoNumber = 0;
         private int _loadedVideoNumber = 0;
         [UdonSynced] private bool _ownerPlaying = false;
@@ -37,6 +38,7 @@ namespace UdonVR.Takato
         private string _timeFormat = @"m\:ss";
         private bool _isTooLong;
         private bool _forcePlay = false;
+        private int _retries;
 
         private bool _debug = false;
 
@@ -184,6 +186,9 @@ namespace UdonVR.Takato
                     Debug.Log($"[UdonSyncVideoPlayer] Auto Play URL {_syncedURL}");
                     videoPlayer.PlayURL(_syncedURL);
                     _delayTime = Time.time + 5f;
+                    _retries += 1;
+                    if (_retries > 5)
+                        _forcePlay = false;
                 }
             }
             else
@@ -193,6 +198,9 @@ namespace UdonVR.Takato
                     Debug.Log($"[UdonSyncVideoPlayer] Watcher Load URL {_syncedURL}");
                     videoPlayer.LoadURL(_syncedURL);
                     _delayTime = Time.time + 5f;
+                    _retries += 1;
+                    if (_retries > 5)
+                        _forcePlay = false;
                 }
             }
         }
@@ -366,14 +374,23 @@ namespace UdonVR.Takato
                 if (_videoNumber != _loadedVideoNumber)
                 {
                     videoPlayer.Stop();
-                    videoPlayer.LoadURL(_syncedURL);
-                    SyncVideo();
-                    _loadedVideoNumber = _videoNumber;
-                    Debug.Log(string.Format("[UdonSyncVideoPlayer] Playing synced: {0}", _syncedURL));
+                    if (_loadedVideoURL != _syncedURL)
+                    {
+                        videoPlayer.LoadURL(_syncedURL);
+                        SyncVideo();
+                        _loadedVideoNumber = _videoNumber;
+                        _loadedVideoURL = _syncedURL;
+                        Debug.Log(string.Format("[UdonSyncVideoPlayer] Playing synced: {0}", _syncedURL));
 
-                    //Turn on forcePlay and set delayTime for repeat tries
-                    _delayTime = Time.time + 5f;
-                    _forcePlay = true;
+                        //Turn on forcePlay and set delayTime for repeat tries
+                        _delayTime = Time.time + 5f;
+                        _forcePlay = true;
+                        _retries = 0;
+                    }
+                    else
+                    {
+                        Debug.Log("[UdonSyncVideoPlayer] synced Url is the same as last url, url is most likely too long to sync.");
+                    }
                 }
                 if (_ownerPaused != _paused)
                 {
