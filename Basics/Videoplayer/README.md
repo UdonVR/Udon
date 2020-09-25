@@ -15,7 +15,9 @@
 A fully featured Udon Video Player
 
 The latest VRChat SDK and UdonSharp versions are required.
+
 [UdonSharp] https://github.com/MerlinVR/UdonSharp/releases/tag/v0.18.1
+
 [VRC SDK] https://vrchat.com/home/download
 
 Current known issues:
