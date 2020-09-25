@@ -1,3 +1,4 @@
+# A fully featured Udon Video Player
 ![](https://github.com/VrcUdon/Udon/raw/master/Basics/Videoplayer/github/World%20Icon.png)
 ---------------------
 
@@ -12,15 +13,13 @@
 
 ---------------------
 
-A fully featured Udon Video Player
-
-The latest VRChat SDK and UdonSharp versions are required.
+#### The latest VRChat SDK and UdonSharp versions are required.
 
 [UdonSharp] https://github.com/MerlinVR/UdonSharp/releases/tag/v0.18.1
 
 [VRC SDK] https://vrchat.com/home/download
 
-Current known issues:
+### Current known issues:
 - None
 
 Current Features:
