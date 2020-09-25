@@ -22,7 +22,7 @@
 ### Current known issues:
 - None
 
-Current Features:
+### Current Features:
 - Emission buttons (Off, Low, Med, High)
 - Looping
 - Time bar scrubbing (Local only display)
