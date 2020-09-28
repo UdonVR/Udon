@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Security.Policy;
 using UdonSharp;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.SDK3.Components;
+using VRC.SDK3.Components.Video;
 using VRC.SDK3.Video.Components.Base;
 using VRC.SDKBase;
 
@@ -26,6 +26,7 @@ namespace UdonVR.Takato
         private float _lastSyncTime = 0;
         private float _delayTime;
         [UdonSynced] private float _videoStartNetworkTime = 0;
+        private float _videoStartTime = 0;
         [UdonSynced] private VRCUrl _syncedURL;
         private VRCUrl _loadedVideoURL;
         [UdonSynced] private int _videoNumber = 0;
@@ -39,8 +40,10 @@ namespace UdonVR.Takato
         private bool _isTooLong;
         private bool _forcePlay = false;
         private int _retries;
+        private int _deserialCount = 0;
 
         private bool _debug = false;
+
 
         private void Start()
         {
@@ -82,22 +85,61 @@ namespace UdonVR.Takato
             if (Networking.IsOwner(gameObject))
             {
                 //Debug.Log("[UdonSyncVideoPlayer] URL Changed Owner");
-                
-                    videoTimeBar.interactable = false;
-                    _videoNumber = _videoNumber + 1;
-                    _loadedVideoNumber = _videoNumber;
-                    videoPlayer.Stop();
 
-                    videoPlayer.LoadURL(_syncedURL);
+                // Attempt to get a start time from YouTube links with t= or start=
+                string urlStr = _syncedURL.Get();
 
-                    _ownerPlaying = false;
-                    _ownerPaused = false;
-                    _videoStartNetworkTime = float.MaxValue;
+                _videoStartTime = 0f;
+                if (urlStr.Contains("youtu.be/") || (urlStr.Contains("youtube.com/watch")))
+                {
+                    int startIndex;
+                    startIndex = urlStr.IndexOf("?t=");
 
-                    videoURLInputField.SetUrl(VRCUrl.Empty);
-                    Debug.Log(string.Format("[UdonSyncVideoPlayer] Video URL Changed to {0}", _syncedURL)); 
+                    if (startIndex == -1) startIndex = urlStr.IndexOf("&t=");
+                    if (startIndex == -1) startIndex = urlStr.IndexOf("&start=");
+                    if (startIndex == -1) startIndex = urlStr.IndexOf("?start=");
+
+                    if (startIndex != -1)
+                    {
+                        char[] urlArr = urlStr.ToCharArray();
+                        int numIndex = urlStr.IndexOf('=', startIndex) + 1;
+                        string timeStr = "";
+
+                        while (numIndex < urlArr.Length)
+                        {
+                            char currentChar = urlArr[numIndex];
+                            if (!char.IsNumber(currentChar))
+                                break;
+
+                            timeStr += currentChar;
+                            ++numIndex;
+                        }
+
+                        if (timeStr.Length > 0)
+                        {
+                            int secondsCount;
+                            if (int.TryParse(timeStr, out secondsCount))
+                                _videoStartTime = secondsCount;
+                        }
+                    }
+                }
+
+                videoTimeBar.interactable = false;
+                _videoNumber = _videoNumber + 1;
+                _loadedVideoNumber = _videoNumber;
+                videoPlayer.Stop();
+
+                videoPlayer.LoadURL(_syncedURL);
+
+                _ownerPlaying = false;
+                _ownerPaused = false;
+                _videoStartNetworkTime = float.MaxValue;
+
+                videoURLInputField.SetUrl(VRCUrl.Empty);
+                Debug.Log(string.Format("[UdonSyncVideoPlayer] Video URL Changed to {0}", _syncedURL));
             }
         }
+
 
         public void OnURLChanged()
         {//When the Owner changes the URL
@@ -227,7 +269,7 @@ namespace UdonVR.Takato
                 //Debug.Log($"[UdonSyncVideoPlayer] Setting Owner to {Networking.LocalPlayer.displayName}");
                 Networking.SetOwner(Networking.LocalPlayer, gameObject);
                 ownerText.text = Networking.LocalPlayer.displayName;
-                
+
             }
         }
 
@@ -290,7 +332,7 @@ namespace UdonVR.Takato
 
         #region OnVideo_Overrides
 
-        
+
         public override void OnVideoLoop()
         {
             Debug.Log("[UdonSyncVideoPlayer] Video Looped");
@@ -336,7 +378,7 @@ namespace UdonVR.Takato
             if (Networking.IsOwner(gameObject))
             {//The Owner saves the start time and sets playing to true
                 if (!_ownerPaused)
-                    _videoStartNetworkTime = Convert.ToSingle(Networking.GetServerTimeInSeconds());
+                    _videoStartNetworkTime = Convert.ToSingle(Networking.GetServerTimeInSeconds()) - _videoStartTime;
                 _ownerPlaying = true;
                 _forcePlay = false;
                 _ownerPaused = false;
@@ -358,7 +400,7 @@ namespace UdonVR.Takato
             Debug.Log(string.Format("[UdonSyncVideoPlayer]Video ended URL: {0}", _syncedURL));
         }
 
-        public override void OnVideoError()
+        public override void OnVideoError(VideoError videoError)
         {//On Video Error, log what went wrong
             videoPlayer.Stop();
             Debug.Log(string.Format("[UdonSyncVideoPlayer] Video failed: {0}", _syncedURL));
@@ -367,10 +409,21 @@ namespace UdonVR.Takato
         }
 
         #endregion
+        public override void OnPreSerialization()
+        {
+            _deserialCount = 0;
+        }
         public override void OnDeserialization()
         {//Load new video when _videoNumber is changed
             if (!Networking.IsOwner(gameObject))
             {
+
+                if (_deserialCount < 10)
+                {
+                    _deserialCount++;
+                    return;
+                }
+
                 if (_videoNumber != _loadedVideoNumber)
                 {
                     videoPlayer.Stop();
