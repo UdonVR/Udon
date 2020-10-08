@@ -1,5 +1,4 @@
-# THIS ASSET HAS BEEN MOVED TO IT'S OWN REPO
-# https://github.com/VrcUdon/UdonVideoplayer
+# [DOWNLOAD HERE](https://github.com/VrcUdon/UdonVideoplayer)
 
 ---------------------
 
