@@ -1,3 +1,8 @@
+# THIS ASSET HAS BEEN MOVED TO IT'S OWN REPO
+# https://github.com/VrcUdon/UdonVideoplayer
+
+---------------------
+
 # A fully featured Udon Video Player
 ![](https://github.com/VrcUdon/Udon/raw/master/Basics/Videoplayer/github/World%20Icon.png)
 ---------------------
