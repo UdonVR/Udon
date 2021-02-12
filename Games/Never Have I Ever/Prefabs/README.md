@@ -1,4 +1,6 @@
 ## Changelog
+- 1.3 Bugfix
+  - re wrote Networking to be more reliable
 - 1.2 Bugfix
   - code error
 - 1.1 Bugfix
