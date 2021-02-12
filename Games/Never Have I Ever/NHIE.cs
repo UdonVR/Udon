@@ -1,7 +1,7 @@
 /*
  * Never Have I Ever
  * Made by Child of the Beast
- * Version 1.3
+ * Version 1.4
  */
 using UdonSharp;
 using UnityEngine;
@@ -10,13 +10,15 @@ using VRC.Udon;
 using UnityEngine.UI;
 using VRC.Udon.Common.Interfaces;
 
-public class NHIE : UdonSharpBehaviour
+namespace UdonVR.Childofthebeast.NHIE
 {
+    public class NHIE : UdonSharpBehaviour
+    {
 
-    //Questions from
-    //https://lifehacks.io/never-have-i-ever-questions/
-    //https://herway.net/entertainment/650-never-have-i-ever-questions/
-    public string[] QuestionsSFW = new string[] { "shoplifted", "fainted", "hitchhiked",
+        //Questions from
+        //https://lifehacks.io/never-have-i-ever-questions/
+        //https://herway.net/entertainment/650-never-have-i-ever-questions/
+        public string[] QuestionsSFW = new string[50] { "shoplifted", "fainted", "hitchhiked",
         "been arrested", "gone surfing", "been electrocuted", "gotten stitches", "gone hunting",
         "gone vegan", "bungee jumped", "ridden an animal", "broken a bone", "shot a gun", "dined and dashed",
         "chipped a tooth", "gone scuba diving", "ruined someone elses vacation", "jumped from a roof", "been caught cheating on a test",
@@ -30,7 +32,7 @@ public class NHIE : UdonSharpBehaviour
         "dyed my hair a crazy color", "had to run to save my life", "made money by performing on the street",
         "pressured someone into getting a tattoo or piercing", "had a physical fight with my best friend",
         "thrown something into a TV or computer screen", "Eaten food out the the garbage"};
-    public string[] QuestionsNSFW = new string[] { "Given a lap dance", "Received a lap dance",
+        public string[] QuestionsNSFW = new string[50] { "Given a lap dance", "Received a lap dance",
         "Took pictures in my underwear", "taken a sexy selfie", "Tried skinny dipping",
         "Had a one night stand", "Kiss and told", "Had sex in public", "Kissed my best friend",
         "Accidentally sent an inappropriate text message to my mom that was intended for my girlfriend/boyfriend",
@@ -46,157 +48,199 @@ public class NHIE : UdonSharpBehaviour
         "Questioned my sexuality", "Trapped someone", "Been Trapped", "had to fake an orgasm", "Had sex in a bathroom stall",
         "Flirted with a teacher", "Kissed someone without knowing their name", "Had phone sex", "Been to a nude beach",
         "Slipped my number to a waiter"};
+        [UdonSynced] Vector3 SyncedVars = new Vector3(0f, 0f, 0f);
+        private Vector3 _localVars;
+        private float _Current;
+        private float _GameType;
+        private float _CurrentQuestion;
 
-    [UdonSynced] int Current;
-    [UdonSynced] string GameType;
-    [UdonSynced] string CurrentQuestion;
+        private Text _QuestionBoard;
+        private int _QuestionCountSFW;
+        private int _QuestionCountNSFW;
+        private GameObject _Circleobj;
+        private GameObject _Classicobj;
+        private GameObject _SelectMenu;
+        private GameObject _GameMenu;
 
-    private Text QuestionBoard;
-    private int QuestionCountSFW;
-    private int QuestionCountNSFW;
-    private GameObject Circleobj;
-    private GameObject Classicobj;
-    private GameObject SelectMenu;
-    private GameObject GameMenu;
-
-    private void Start()
-    {
-        Circleobj = transform.Find("Round").gameObject;
-        Classicobj = transform.Find("Classic").gameObject;
-        SelectMenu = transform.Find("Selecting_Canvas").gameObject;
-        GameMenu = transform.Find("Playing_Canvas").gameObject;
-        QuestionBoard = GameMenu.transform.Find("Panel/QuestionText").GetComponent<Text>();
-        QuestionCountSFW = QuestionsSFW.Length;
-        QuestionCountNSFW = QuestionsNSFW.Length;
-        SelectMenu.transform.Find("Panel/SFW_Button/Count").GetComponent<Text>().text = QuestionCountSFW.ToString() + " Questions";
-        SelectMenu.transform.Find("Panel/NSFW_Button/Count").GetComponent<Text>().text = QuestionCountNSFW.ToString() + " Questions";
-        SelectMenu.transform.Find("Panel/Both_Button/Count").GetComponent<Text>().text = (QuestionCountSFW + QuestionCountNSFW).ToString() + " Questions";
-    }
-    private void Update()
-    {
-        if (CurrentQuestion == "SFW")
+        [Tooltip("This tells the game how many frames to wait until trying to update the menu with a new question.")]
+        public int UpdateRate = 10;
+        private int _Frame;
+        [Tooltip("WARNING: This will spam console with debugging every time UpdateRate is ran.")]
+        public bool _Debug = false;
+        private void SyncData(bool _a)
         {
-            QuestionBoard.text = QuestionsSFW[Current];
+            if (_a == true)
+            {
+                SyncedVars.x = _Current;
+                SyncedVars.y = _GameType;
+                SyncedVars.z = _CurrentQuestion;
+                _localVars = SyncedVars;
+            }
+            else
+            {
+                if (SyncedVars == _localVars) return;
+                _Current = SyncedVars.x;
+                _GameType = SyncedVars.y;
+                _CurrentQuestion = SyncedVars.z;
+                _localVars = SyncedVars;
+            }
         }
-        else
-        {
-            QuestionBoard.text = QuestionsNSFW[Current];
-        }
-    }
-    /*
-     * Setup
-     */
-    public void SetupSWF()
-    {
-        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupSWF");
-        NewQuestion();
-    }
-    public void SetupNSWF()
-    {
-        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupNSWF");
-        NewQuestion();
-    }
-    public void SetupBoth()
-    {
-        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupBoth");
-        NewQuestion();
-    }
-    public void NetworkSetupSWF()
-    {
-        GameType = "SFW";
-    }
-    public void NetworkSetupNSWF()
-    {
-        GameType = "NSFW";
-    }
-    public void NetworkSetupBoth()
-    {
-        GameType = "BOTH";
-    }
 
-    public void Setup()
-    {
-        SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkSetup");
-    }
-    public void NetworkSetup()
-    {
-        SelectMenu.SetActive(false);
-        GameMenu.SetActive(true);
-    }
-    public void UnSetup()
-    {
-        SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkUnSetup");
-    }
-    public void NetworkUnSetup()
-    {
-        SelectMenu.SetActive(true);
-        GameMenu.SetActive(false);
-    }
-    /*
-    * Setup
-    */
-    public void NewQuestion()
-    {
-        SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkSetup");
-        SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkNewQuestion");
-    }
-    public void NetworkNewQuestion()
-    {
-        switch (GameType)
+        private void Start()
         {
-            case "SFW":
-                PullSFW();
-                break;
-            case "NSFW":
-                PullNSFW();
-                break;
-            case "BOTH":
-                if (Random.Range(0, 2) == 0)
+            _Circleobj = transform.Find("Round").gameObject;
+            _Classicobj = transform.Find("Classic").gameObject;
+            _SelectMenu = transform.Find("Selecting_Canvas").gameObject;
+            _GameMenu = transform.Find("Playing_Canvas").gameObject;
+            _QuestionBoard = _GameMenu.transform.Find("Panel/QuestionText").GetComponent<Text>();
+            _QuestionCountSFW = QuestionsSFW.Length;
+            _QuestionCountNSFW = QuestionsNSFW.Length;
+            _SelectMenu.transform.Find("Panel/SFW_Button/Count").GetComponent<Text>().text = _QuestionCountSFW.ToString() + " Questions";
+            _SelectMenu.transform.Find("Panel/NSFW_Button/Count").GetComponent<Text>().text = _QuestionCountNSFW.ToString() + " Questions";
+            _SelectMenu.transform.Find("Panel/Both_Button/Count").GetComponent<Text>().text = (_QuestionCountSFW + _QuestionCountNSFW).ToString() + " Questions";
+        }
+        private void Update()
+        {
+            if (_Frame >= UpdateRate)
+            {
+                if (_localVars != SyncedVars) SyncData(false);
+                if (_Debug)
                 {
-                    PullSFW();
+                    Debug.Log("[UdonVR] SyncVars: " + SyncedVars.ToString());
+                    Debug.Log("[UdonVR] LocalVars: " + SyncedVars.ToString());
+                }
+
+                if (_CurrentQuestion == 1)
+                {
+                    _QuestionBoard.text = QuestionsSFW[(int)_Current];
                 }
                 else
                 {
-                    PullNSFW();
+                    _QuestionBoard.text = QuestionsNSFW[(int)_Current];
                 }
-                break;
+                _Frame = 0;
+            }
+            else
+            {
+                _Frame++;
+            }
         }
-    }
+        /*
+         * Setup
+         */
+        public void SetupSWF()
+        {
+            SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupSWF");
+            NewQuestion();
+        }
+        public void SetupNSWF()
+        {
+            SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupNSWF");
+            NewQuestion();
+        }
+        public void SetupBoth()
+        {
+            SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkSetupBoth");
+            NewQuestion();
+        }
+        public void NetworkSetupSWF()
+        {
+            _GameType = 1;
+        }
+        public void NetworkSetupNSWF()
+        {
+            _GameType = 2;
+        }
+        public void NetworkSetupBoth()
+        {
+            _GameType = 3;
+        }
+
+        public void Setup()
+        {
+            SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkSetup");
+        }
+        public void NetworkSetup()
+        {
+            _SelectMenu.SetActive(false);
+            _GameMenu.SetActive(true);
+        }
+        public void UnSetup()
+        {
+            SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkUnSetup");
+        }
+        public void NetworkUnSetup()
+        {
+            _SelectMenu.SetActive(true);
+            _GameMenu.SetActive(false);
+        }
+        /*
+        *
+        */
+        public void NewQuestion()
+        {
+            SendCustomNetworkEvent(NetworkEventTarget.All, "NetworkSetup");
+            SendCustomNetworkEvent(NetworkEventTarget.Owner, "NetworkNewQuestion");
+        }
+        public void NetworkNewQuestion()
+        {
+            switch (_GameType)
+            {
+                case 1:
+                    PullSFW();
+                    break;
+                case 2:
+                    PullNSFW();
+                    break;
+                case 3:
+                    if (Random.Range(0, 2) == 0)
+                    {
+                        PullSFW();
+                    }
+                    else
+                    {
+                        PullNSFW();
+                    }
+                    break;
+            }
+            SyncData(true);
+        }
 
         private void PullSFW()
-    {
-        CurrentQuestion = "SFW";
-        Current = Random.Range(0, QuestionCountSFW);
-    }
-    private void PullNSFW()
-    {
-        CurrentQuestion = "NSFW";
-        Current = Random.Range(0, QuestionCountNSFW);
-    }
+        {
+            _CurrentQuestion = 1;
+            _Current = Random.Range(0, _QuestionCountSFW);
+        }
+        private void PullNSFW()
+        {
+            _CurrentQuestion = 2;
+            _Current = Random.Range(0, _QuestionCountNSFW);
+        }
 
-    public void CircleTrigger()
-    {
-        
-        if (Networking.LocalPlayer.isMaster)
+        public void CircleTrigger()
         {
-            SendCustomNetworkEvent(NetworkEventTarget.All, "Circle");
+
+            if (Networking.LocalPlayer.isMaster)
+            {
+                SendCustomNetworkEvent(NetworkEventTarget.All, "Circle");
+            }
         }
-    }
-    public void ClassicTrigger()
-    {
-        if (Networking.LocalPlayer.isMaster)
+        public void ClassicTrigger()
         {
-            SendCustomNetworkEvent(NetworkEventTarget.All, "Classic");
+            if (Networking.LocalPlayer.isMaster)
+            {
+                SendCustomNetworkEvent(NetworkEventTarget.All, "Classic");
+            }
         }
-    }
-    public void Circle()
-    {
-        Circleobj.SetActive(true);
-        Classicobj.SetActive(false);
-    }
-    public void Classic()
-    {
-        Circleobj.SetActive(false);
-        Classicobj.SetActive(true);
+        public void Circle()
+        {
+            _Circleobj.SetActive(true);
+            _Classicobj.SetActive(false);
+        }
+        public void Classic()
+        {
+            _Circleobj.SetActive(false);
+            _Classicobj.SetActive(true);
+        }
     }
 }
