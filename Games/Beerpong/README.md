@@ -1,5 +1,15 @@
 [Join our Discord](http://discord.gg/dpuxmxr)
-# Beer Pong
+
+# Beer Pong 2.x is being developed
+Beer pong is currently being re-written from the ground up for increased performance, reliability, and more features.
+
+It's currently in beta and available for download for our [Patrons](https://www.patreon.com/TakatoandBeast) (any tier)
+
+It will be a free download once it's finished.</p>
+
+---------------------
+
+# Beer Pong 1.4
 
 Make your own beer pong with this script. Unlimited amounts of cups are supported in whatever order you want them in.
 
@@ -17,6 +27,10 @@ Make your own beer pong with this script. Unlimited amounts of cups are supporte
 
 ### Prefab:
 - The prefab is pre-setup with a table and 2 sets of cups.
+
+### Don't like the ball physics?
+learn how to edit the Physics material here:
+https://docs.unity3d.com/2019.4/Documentation/Manual/class-PhysicMaterial.html
 
 ---------------------
 
