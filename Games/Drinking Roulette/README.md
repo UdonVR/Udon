@@ -19,13 +19,6 @@ if you want to resize the table
   - different sized panels included
 - 48 different stop points for the spinner
 
-### Premium: Coming Soon!
-###### Available through our <a href="https://www.patreon.com/TakatoandBeast" target="_blank">Patreon</a> or from our <a href="https://ko-fi.com/takatoandbeast/shop" target="_blank">Ko-Fi store</a>
-- different game modes
-  - Spin the bottle (finished)
-  - drinking roulette (finished)
-  - Russian Roulette (in development)
-
 ---------------------
 
 <p align="center">
