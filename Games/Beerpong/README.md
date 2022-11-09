@@ -1,11 +1,10 @@
 [Join our Discord](http://discord.gg/dpuxmxr)
 
-# Beer Pong 2.x is being developed
-Beer pong is currently being re-written from the ground up for increased performance, reliability, and more features.
-
-It's currently in beta and available for download for our [Patrons](https://www.patreon.com/TakatoandBeast) (any tier)
-
-It will be a free download once it's finished.</p>
+# Beer Pong 2.8
+Version 2.8 has more features and has much more reliable networking than 1.4.
+Loli step
+Walkthough Toggle
+Completly re-written networking
 
 ---------------------
 
